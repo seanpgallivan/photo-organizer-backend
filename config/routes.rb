@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :albums_photos
   resources :albums
   resources :photos
   resources :users
