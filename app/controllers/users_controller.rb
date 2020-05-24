@@ -1,10 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :verify_authenticity_token
-
-    # def index 
-    #     users = User.all.select {|user| user.id != 1}
-    #     render :json => users
-    # end 
+    # skip_before_action :verify_authenticity_token
 
     def show 
         user = User.find_by(username: params[:id])
@@ -19,6 +14,5 @@ class UsersController < ApplicationController
     private 
     def user_params
         params.require(:user).permit(:username, :bio, :fullname)
-    end 
-
+    end
 end

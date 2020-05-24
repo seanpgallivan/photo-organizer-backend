@@ -14,7 +14,6 @@ class AlbumsController < ApplicationController
     def create 
         album = Album.create(album_params)
         render :json => album
-
     end 
 
     def update
@@ -25,6 +24,7 @@ class AlbumsController < ApplicationController
 
     def destroy
         album = Album.find(params[:id])
+        album.album_photos.each {|ap| ap.destroy}
         album.destroy
         render :json => {status: 'deleted'}
     end 
