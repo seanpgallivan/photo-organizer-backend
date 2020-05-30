@@ -1,6 +1,11 @@
 class PhotosController < ApplicationController
     skip_before_action :verify_authenticity_token
 
+    def create 
+        photo = Photo.create(photo_params)
+        render :json => photo
+    end 
+
     def update
         photo = Photo.find(params[:id])
         photo.update(photo_params)
