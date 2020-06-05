@@ -6,16 +6,20 @@ class UsersController < ApplicationController
         if user
             render :json => user
         else
-            error = 'User not found.'
-            render json: { error: error }, status: :not_found
-            log_action(nil, error)
+            render json: { error: user.errors }, status 404
+            log_action(nil, user.errors.full_messages.to_s)
         end
     end 
 
     def create 
-        user = User.create(user_params)
-        render :json => user
-        log_action(user.id)
+        user = User.new(user_params)
+        if user.valid?
+            render :json => user
+            log_action(user.id)
+        else
+            render json: { error: user.errors }, status: 500
+            log_action(nil, user.errors.full_messages.to_s)
+        end
     end 
 
     private 
