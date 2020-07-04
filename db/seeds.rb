@@ -26,9 +26,9 @@ i = 0
     rand(1..3).times {people.push(people_options.sample)}
     description = Faker::Lorem.paragraph(sentence_count: rand(1..5))
     location = Faker::Nation.capital_city
-    size = sizes.sample.sub('/','x')
+    size = sizes.sample
     filename = "https://picsum.photos/seed/#{(0...50).map { ('a'..'z').to_a[rand(26)] }.join}/#{size}"
-    photo = Photo.create(user_id: user, description: description, tags: tags.uniq, people: people.uniq, location: location, size: size, filename: filename )
+    photo = Photo.create(user_id: user, description: description, tags: tags.uniq, people: people.uniq, location: location, size: size.sub('/','x'), filename: filename )
     AlbumsPhoto.create(album_id: User.find(user).albums.sample.id, photo_id: photo.id)
     i += 1
 }
