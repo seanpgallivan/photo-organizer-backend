@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
     validates :fullname,
         presence: {message: "Fullname can't be blank"},
-        format: {with: /\A[-'a-z]+\Z/i, message: "Only letters, apostrophes, or dashes allowed"},
+        format: {with: /\A[-' a-z]+\Z/i, message: "Only letters, spaces, apostrophes, or dashes allowed"},
         length: {maximum: 40, message: "Must be <40 chracters in length"}
 
 end
