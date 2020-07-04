@@ -2,12 +2,12 @@ require 'faker'
 sizes = ["1024/768", "640/480", "1200/800", "1280/720", "768/1024", "480/640", "800/1200", "720/1280"]
 
 User.create(username: "user", bio: "I am here", fullname: "User Name")
-User.create(username: "sean", bio: "I am here ", fullname: "Sean Gallivan")
+User.create(username: "sean", bio: "I am here", fullname: "Sean Gallivan")
 
 uids = User.all.map {|u| u.id}
 
 j = 0
-(uids*5).times {
+(uids.count*5).times {
     Album.create(user_id: uids[j%uids.count], name: Faker::Lorem.word, description: Faker::Lorem.sentence)
     j += 1
 }
@@ -18,7 +18,7 @@ people_options = []
 40.times {people_options.push(Faker::Name.name)}
 
 i = 0
-800.times {
+(uids.count*200).times {
     user = uids[i%uids.count]
     tags = []
     rand(1..5).times {tags.push(tag_options.sample)}
