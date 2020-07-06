@@ -1,6 +1,12 @@
 require 'faker'
 sizes = ["1024/768", "640/480", "1200/800", "1280/720", "768/1024", "480/640", "800/1200", "720/1280"]
 
+Log.create(message: "DATABASE RESEED")
+AlbumsPhoto.delete_all
+Photos.delete_all
+Albums.delete_all
+User.delete_all
+
 User.create(username: "user", bio: "I am here", fullname: "User Name")
 User.create(username: "sean", bio: "I am here", fullname: "Sean Gallivan")
 

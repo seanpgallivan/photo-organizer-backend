@@ -11,7 +11,7 @@ class Photo < ApplicationRecord
 
   validates :filename,
     url: true,
-    length: {maximum: 100, message: "Must be 1-100 characters in length"}
+    length: {minimum: 1, maximum: 200, message: "Must be 1-200 characters in length"}
 
 
   validates_each :tags, :people do |record, attr, value|
